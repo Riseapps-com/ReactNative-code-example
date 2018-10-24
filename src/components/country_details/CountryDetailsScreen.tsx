@@ -1,6 +1,5 @@
 import React from 'react'
 import {Options} from 'react-native-navigation/lib/dist/interfaces/Options'
-import getImgByName, {ImgName} from '../../assets/imgs/getImgByName'
 import getPlatformFont, {FontName} from '../../assets/fonts/getFontByPlatform'
 import {PRIMARY_COLOR} from '../../appConstants'
 import {Country} from '../../network/data/CountryInterface'
@@ -45,9 +44,9 @@ class CountryDetailsScreen extends React.Component<AllProps, State> {
             topBar: {
                 visible: true,
                 animate: false,
-                // backButton: {
-                //     icon: getImgByName(ImgName.BackArrow)
-                // },
+                backButton: {
+                    color: 'white'
+                },
                 // @ts-ignore
                 title: {
                     text: passProps.country.name,

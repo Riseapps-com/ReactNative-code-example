@@ -7,10 +7,9 @@ import {clearCountriesByRegion, getCountriesByRegion} from '../../store/countrie
 import {Options} from 'react-native-navigation/lib/dist/interfaces/Options'
 import getPlatformFont, {FontName} from '../../assets/fonts/getFontByPlatform'
 import {PRIMARY_COLOR} from '../../appConstants'
-import getImgByName, {ImgName} from '../../assets/imgs/getImgByName'
 import {clearAllCountries, getAllCountries} from '../../store/all_countries/actions'
 import i18n from '../../assets/localization/i18n'
-import {View, Text} from 'react-native'
+import {Text, View} from 'react-native'
 import styles from './styles'
 import CountriesList from './elements/countries_list/CountriesList'
 import {Navigation} from 'react-native-navigation'
@@ -63,9 +62,9 @@ class CountriesScreen extends React.Component<AllProps, State> {
             topBar: {
                 visible: true,
                 animate: false,
-                // backButton: {
-                //     icon: getImgByName(ImgName.BackArrow)
-                // },
+                backButton: {
+                    color: 'white'
+                },
                 // @ts-ignore
                 title: {
                     text: this.getTitle(passProps),
