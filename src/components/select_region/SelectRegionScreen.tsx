@@ -1,7 +1,7 @@
 import React from 'react'
 import {Options} from 'react-native-navigation/lib/dist/interfaces/Options'
 import MenuItem, {OnItemPressCallback} from './elements/menu_item/MenuItem'
-import {View} from 'react-native'
+import {SafeAreaView} from 'react-native'
 import styles from './styles'
 import {Region} from '../../network/data/RegionEnum'
 import {Navigation} from 'react-native-navigation'
@@ -34,7 +34,7 @@ class SelectRegionScreen extends React.Component<Props, State> {
 
     render(): JSX.Element {
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <MenuItem region={Region.Africa}
                           onMenuItemPress={this.handleMenuPress}
                           willShowBottomDivider={true}/>
@@ -49,7 +49,7 @@ class SelectRegionScreen extends React.Component<Props, State> {
                           willShowBottomDivider={true}/>
                 <MenuItem region={Region.Oceania}
                           onMenuItemPress={this.handleMenuPress}/>
-            </View>
+            </SafeAreaView>
         )
     }
 

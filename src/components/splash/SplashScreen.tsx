@@ -1,7 +1,7 @@
 import React from 'react'
 import {Navigation} from 'react-native-navigation'
 import {MENU_SCREEN} from '../registerScreens'
-import {Image, View, Text} from 'react-native'
+import {Image, SafeAreaView, Text, View} from 'react-native'
 import {Options} from 'react-native-navigation/lib/dist/interfaces/Options'
 import styles from './styles'
 import getImgByName, {ImgName} from '../../assets/imgs/getImgByName'
@@ -59,7 +59,7 @@ class SplashScreen extends React.Component<Props, State> {
         const version = `${i18n.t('Version')}: ${DeviceInfo.getVersion()} (${DeviceInfo.getBuildNumber()})`
 
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <Image source={logoImg}
                        resizeMode={'contain'}
                        style={styles.logoImg}/>
@@ -68,7 +68,7 @@ class SplashScreen extends React.Component<Props, State> {
                         {version}
                     </Text>
                 </View>
-            </View>
+            </SafeAreaView>
         )
     }
 

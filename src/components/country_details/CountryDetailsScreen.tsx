@@ -6,11 +6,11 @@ import {Country} from '../../network/data/CountryInterface'
 import {AppState} from '../../store/rootReducer'
 import {connect} from 'react-redux'
 import {clearCountryDetails, getCountryDetails} from '../../store/country_details/actions'
-import {View} from 'react-native'
 import styles from './styles'
 import CountryDetailsView from './elements/country_details_view/CountryDetailsView'
 // @ts-ignore
 import Spinner from 'react-native-loading-spinner-overlay'
+import {SafeAreaView} from 'react-native'
 
 export interface Props {
     componentId?: string,
@@ -77,12 +77,12 @@ class CountryDetailsScreen extends React.Component<AllProps, State> {
         } = this.props
 
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <CountryDetailsView country={countryDetails}/>
                 <Spinner visible={loading}
                          color={PRIMARY_COLOR}
                          animation={'fade'}/>
-            </View>
+            </SafeAreaView>
         )
     }
 }

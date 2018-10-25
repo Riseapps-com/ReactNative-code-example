@@ -9,7 +9,7 @@ import getPlatformFont, {FontName} from '../../assets/fonts/getFontByPlatform'
 import {PRIMARY_COLOR} from '../../appConstants'
 import {clearAllCountries, getAllCountries} from '../../store/all_countries/actions'
 import i18n from '../../assets/localization/i18n'
-import {Text, View} from 'react-native'
+import {SafeAreaView, Text, View} from 'react-native'
 import styles from './styles'
 import CountriesList from './elements/countries_list/CountriesList'
 import {Navigation} from 'react-native-navigation'
@@ -106,7 +106,7 @@ class CountriesScreen extends React.Component<AllProps, State> {
         } = this.props
 
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 {
                     this.isError()
                         ? this.getErrorView()
@@ -116,7 +116,7 @@ class CountriesScreen extends React.Component<AllProps, State> {
                 <Spinner visible={loading}
                          color={PRIMARY_COLOR}
                          animation={'fade'}/>
-            </View>
+            </SafeAreaView>
         )
     }
 
