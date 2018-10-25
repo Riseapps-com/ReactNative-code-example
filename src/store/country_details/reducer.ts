@@ -7,14 +7,14 @@ export interface CountryDetailsState {
     readonly data: Country,
     readonly loading: boolean,
     readonly error?: string,
-    readonly name: string
+    readonly code: string
 }
 
 const initState: CountryDetailsState = {
     data: null,
     loading: false,
     error: 'Data is empty',
-    name: ''
+    code: ''
 }
 
 const countryDetails = (state: CountryDetailsState = initState, action: Action): CountryDetailsState => {
@@ -24,7 +24,7 @@ const countryDetails = (state: CountryDetailsState = initState, action: Action):
             newState = {
                 ...state,
                 loading: true,
-                name: action.payload.name
+                code: action.payload.code
             }
             break
         case `${GET_COUNTRY_DETAILS}${SUCCESS}`:

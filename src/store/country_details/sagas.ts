@@ -9,7 +9,7 @@ const countriesApi: CountriesApi = new CountriesApi()
 
 export function* getCountryDetails(action: Action) {
     try {
-        const countryByName: Country[] = yield call(countriesApi.getCountryByName, action.payload.name)
+        const countryByName: Country[] = yield call(countriesApi.getCountryByCode, action.payload.code)
         const nextAction: Action = {
             type: `${GET_COUNTRY_DETAILS}${SUCCESS}`,
             response: countryByName

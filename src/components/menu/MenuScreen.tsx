@@ -21,7 +21,8 @@ class MenuScreen extends React.Component<Props, State> {
     public static options(): Options {
         return {
             layout: {
-                backgroundColor: 'white'
+                backgroundColor: 'white',
+                orientation: ['portrait']
             },
             topBar: {
                 visible: false,

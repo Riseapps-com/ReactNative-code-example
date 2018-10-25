@@ -39,7 +39,8 @@ class CountryDetailsScreen extends React.Component<AllProps, State> {
     public static options(passProps: Props): Options {
         return {
             layout: {
-                backgroundColor: 'white'
+                backgroundColor: 'white',
+                orientation: ['portrait']
             },
             topBar: {
                 visible: true,
@@ -62,7 +63,7 @@ class CountryDetailsScreen extends React.Component<AllProps, State> {
 
     public componentDidMount() {
         const {country} = this.props
-        this.props.getCountryDetails(country.nativeName)
+        this.props.getCountryDetails(country.alpha2Code)
     }
 
     public componentWillUnmount() {

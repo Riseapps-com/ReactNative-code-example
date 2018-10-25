@@ -57,7 +57,8 @@ class CountriesScreen extends React.Component<AllProps, State> {
     public static options(passProps: Props): Options {
         return {
             layout: {
-                backgroundColor: 'white'
+                backgroundColor: 'white',
+                orientation: ['portrait']
             },
             topBar: {
                 visible: true,

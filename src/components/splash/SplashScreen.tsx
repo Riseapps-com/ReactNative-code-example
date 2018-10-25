@@ -26,7 +26,8 @@ class SplashScreen extends React.Component<Props, State> {
     public static options(): Options {
         return {
             layout: {
-                backgroundColor: PRIMARY_COLOR
+                backgroundColor: PRIMARY_COLOR,
+                orientation: ['portrait']
             },
             topBar: {
                 visible: false,

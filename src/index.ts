@@ -11,4 +11,5 @@ const updateIds = <T extends any> (array: Array<T>): Array<T> => {
 
     return array
 }
+
 export default updateIds

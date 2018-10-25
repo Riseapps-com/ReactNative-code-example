@@ -18,9 +18,9 @@ class CountriesApi {
             .then(response => updateIds<Country>(response.data))
     }
 
-    public getCountryByName = (name: string): Promise<Country> => {
-        return axios.get(`${BASE_URL}/name/${name}`)
-            .then(response => updateIds<Country>(response.data)[0])
+    public getCountryByCode = (code: string): Promise<Country> => {
+        return axios.get(`${BASE_URL}/alpha/${code}`)
+            .then(response => response.data)
     }
 }
 

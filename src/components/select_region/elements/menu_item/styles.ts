@@ -34,7 +34,8 @@ const styles = StyleSheet.create<Style>({
     menuTextContainer: {
         flex: 1,
         justifyContent: 'center',
-        paddingHorizontal: 8
+        paddingStart: 8,
+        paddingEnd: 16
     },
     menuText: {
         ...getPlatformFont(FontName.QuicksandBold),
