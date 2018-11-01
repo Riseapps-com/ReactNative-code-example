@@ -20,6 +20,7 @@ Navigation.events().registerAppLaunchedListener(() => {
     });
 });
 
+
 // RNLanguages.removeEventListener('change', this.onLanguagesChange)
 
 const onLanguagesChange = ({language}) => i18n.locale = language;
