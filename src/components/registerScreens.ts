@@ -19,6 +19,7 @@ export const SELECT_REGION_SCREEN = `${PACKAGE}.screens.SelectRegionScreen`
 // COUNTRY DETAILS
 export const COUNTRY_DETAILS_SCREEN = `${PACKAGE}.screens.CountryDetailsScreen`
 
+
 export function registerScreens(): void {
     Navigation.registerComponentWithRedux(SPLASH_SCREEN, () => SplashScreen, Provider, store)
     Navigation.registerComponentWithRedux(MENU_SCREEN, () => MenuScreen, Provider, store)
