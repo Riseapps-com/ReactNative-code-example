@@ -35,11 +35,7 @@ class SplashScreen extends React.Component<Props, State> {
             topBar: {
                 visible: false,
                 drawBehind: true
-            },
-            statusBar: {
-                visible: false,
-                style: 'light'
-            },
+            }
         }
     }
 
