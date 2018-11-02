@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ReactElement} from 'react'
 import {Country} from '../../../../network/data/CountryInterface'
 import CountriesListCell, {OnCountryPressCallback} from './CountriesListCell'
 import {FlatList} from 'react-native'
@@ -11,13 +11,16 @@ export interface Props {
 export interface State {
 }
 
-class CountriesList extends React.Component<Props, State> {
-    readonly state: State = {}
-    public static defaultProps: Props = {
-        countries: []
-    }
+const initialState: State = {}
+const defaultProps: Props = {
+    countries: []
+}
 
-    public render(): JSX.Element {
+class CountriesList extends React.Component<Props, State> {
+    readonly state: State = initialState
+    static defaultProps: Props = defaultProps
+
+    render(): ReactElement<any> {
         const {
             countries,
         } = this.props
@@ -29,7 +32,7 @@ class CountriesList extends React.Component<Props, State> {
         )
     }
 
-    private getRenderItem = (item: Country): JSX.Element => {
+    getRenderItem = (item: Country): ReactElement<any> => {
         const {
             onCountryPress
         } = this.props

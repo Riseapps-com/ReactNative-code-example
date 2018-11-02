@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ReactElement} from 'react'
 import {Country} from 'src/network/data/CountryInterface'
 import {Text, View} from 'react-native'
 import styles from './styles'
@@ -11,11 +11,14 @@ export interface Props {
 export interface State {
 }
 
-class CountryDetailsView extends React.Component<Props, State> {
-    readonly state: State = {}
-    public static defaultProps: Props = {}
+const initialState: State = {}
+const defaultProps: Props = {}
 
-    public render(): JSX.Element {
+class CountryDetailsView extends React.Component<Props, State> {
+    readonly state: State = initialState
+    static defaultProps: Props = defaultProps
+
+    render(): ReactElement<any> {
         const {country} = this.props
         return (
             <View style={styles.container}>
@@ -85,7 +88,7 @@ class CountryDetailsView extends React.Component<Props, State> {
         )
     }
 
-    private getLanguages = (): string => {
+    getLanguages = (): string => {
         const {country} = this.props
         let languages = ''
 
@@ -103,7 +106,7 @@ class CountryDetailsView extends React.Component<Props, State> {
         return languages
     }
 
-    private getCurrencies = (): string => {
+    getCurrencies = (): string => {
         const {country} = this.props
         let currencies = ''
 

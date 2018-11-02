@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {ReactElement} from 'react'
 import {Image, Text, TouchableOpacity, View} from 'react-native'
 import styles from './styles'
-import getImgByName, {ImgName} from '../../../../assets/imgs/getImgByName'
+import getImgByName from '../../../../assets/imgs/getImgByName'
 import i18n from '../../../../assets/localization/i18n'
-import {Region} from '../../../../network/data/RegionEnum'
+import {Region} from '../../../../network/data/RegionType'
 
 export interface Props {
     onMenuItemPress?: OnItemPressCallback,
@@ -18,14 +18,17 @@ export interface OnItemPressCallback {
 export interface State {
 }
 
-class MenuItem extends React.Component<Props, State> {
-    readonly state: State = {}
-    public static defaultProps: Props = {
-        region: Region.Africa,
-        willShowBottomDivider: false
-    }
+const initialState: State = {}
+const defaultProps: Props = {
+    region: 'africa',
+    willShowBottomDivider: false
+}
 
-    public render(): JSX.Element {
+class MenuItem extends React.Component<Props, State> {
+    readonly state: State = initialState
+    static defaultProps: Props = defaultProps
+
+    render(): ReactElement<any> {
         const {willShowBottomDivider} = this.props
 
         return (
@@ -47,29 +50,29 @@ class MenuItem extends React.Component<Props, State> {
         )
     }
 
-    private getMenuImg = (): JSX.Element => {
+    getMenuImg = (): ReactElement<any> => {
         const {region} = this.props
-        const africaImg = getImgByName(ImgName.Africa)
-        const americaImg = getImgByName(ImgName.Americas)
-        const asiaImg = getImgByName(ImgName.Asia)
-        const europeImg = getImgByName(ImgName.Europe)
-        const oceaniaImg = getImgByName(ImgName.Oceania)
+        const africaImg = getImgByName('africa')
+        const americaImg = getImgByName('americas')
+        const asiaImg = getImgByName('asia')
+        const europeImg = getImgByName('europe')
+        const oceaniaImg = getImgByName('oceania')
         let source: number = africaImg
 
         switch (region) {
-            case Region.Africa:
+            case 'africa':
                 source = africaImg
                 break
-            case Region.Americas:
+            case 'americas':
                 source = americaImg
                 break
-            case Region.Asia:
+            case 'asia':
                 source = asiaImg
                 break
-            case Region.Europe:
+            case 'europe':
                 source = europeImg
                 break
-            case Region.Oceania:
+            case 'oceania':
                 source = oceaniaImg
                 break
         }
@@ -80,7 +83,7 @@ class MenuItem extends React.Component<Props, State> {
         )
     }
 
-    private handleMenuItemPress = (): void => {
+    handleMenuItemPress = (): void => {
         const {
             onMenuItemPress,
             region
@@ -90,24 +93,24 @@ class MenuItem extends React.Component<Props, State> {
         }
     }
 
-    private getMenuItemText = (): string => {
+    getMenuItemText = (): string => {
         const {region} = this.props
         let menuItemText: string = i18n.t('All Countries')
 
         switch (region) {
-            case Region.Africa:
+            case 'africa':
                 menuItemText = i18n.t('Africa')
                 break
-            case Region.Americas:
+            case 'americas':
                 menuItemText = i18n.t('Americas')
                 break
-            case Region.Asia:
+            case 'asia':
                 menuItemText = i18n.t('Asia')
                 break
-            case Region.Europe:
+            case 'europe':
                 menuItemText = i18n.t('Europe')
                 break
-            case Region.Oceania:
+            case 'oceania':
                 menuItemText = i18n.t('Oceania')
                 break
         }
@@ -115,7 +118,7 @@ class MenuItem extends React.Component<Props, State> {
         return menuItemText
     }
 
-    private getBottomDivider = (): JSX.Element => <View style={styles.bottomDivider}/>
+    getBottomDivider = (): ReactElement<any> => <View style={styles.bottomDivider}/>
 }
 
 export default MenuItem

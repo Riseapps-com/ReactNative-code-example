@@ -1,5 +1,5 @@
 import {Dimensions, ImageStyle, StyleSheet, TextStyle, ViewStyle} from 'react-native'
-import getPlatformFont, {FontName} from '../../assets/fonts/getFontByPlatform'
+import getPlatformFont from '../../assets/fonts/getFontByPlatform'
 
 export interface Style {
     container: ViewStyle,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create<Style>({
         padding: 16
     },
     versionText: {
-        ...getPlatformFont(FontName.QuicksandBold),
+        ...getPlatformFont('quicksand_bold'),
         color: 'white',
         fontSize: 16
     }

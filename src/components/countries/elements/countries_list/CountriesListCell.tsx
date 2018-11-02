@@ -1,5 +1,5 @@
 import {Country} from '../../../../network/data/CountryInterface'
-import React from 'react'
+import React, {ReactElement} from 'react'
 import {Text, TextStyle, TouchableOpacity, View} from 'react-native'
 import styles from './styles'
 import LinearGradient from 'react-native-linear-gradient'
@@ -21,15 +21,18 @@ export interface OnCountryPressCallback {
     (country: Country): void
 }
 
-class CountriesListCell extends React.Component<Props, State> {
-    readonly state: State = {
-        isPressed: false
-    }
-    public static defaultProps: Props = {
-        country: null
-    }
+const initialState: State = {
+    isPressed: false
+}
+const defaultProps: Props = {
+    country: null
+}
 
-    render(): JSX.Element {
+class CountriesListCell extends React.Component<Props, State> {
+    readonly state: State = initialState
+    static defaultProps: Props = defaultProps
+
+    render(): ReactElement<any> {
         const {country} = this.props
         const {isPressed} = this.state
         const whiteText: TextStyle = {
@@ -65,7 +68,7 @@ class CountriesListCell extends React.Component<Props, State> {
         )
     }
 
-    private handleCountryPress = (): void => {
+    handleCountryPress = (): void => {
         const {
             country,
             onCountryPress
@@ -75,13 +78,13 @@ class CountriesListCell extends React.Component<Props, State> {
         }
     }
 
-    private handlePressIn = (): void => {
+    handlePressIn = (): void => {
         this.setState({
             isPressed: true
         })
     }
 
-    private handlePressOut = (): void => {
+    handlePressOut = (): void => {
         this.setState({
             isPressed: false
         })

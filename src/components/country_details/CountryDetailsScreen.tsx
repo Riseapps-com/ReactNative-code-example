@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {ReactElement} from 'react'
 import {Options} from 'react-native-navigation/lib/dist/interfaces/Options'
-import getPlatformFont, {FontName} from '../../assets/fonts/getFontByPlatform'
+import getPlatformFont from '../../assets/fonts/getFontByPlatform'
 import {PRIMARY_COLOR} from '../../appConstants'
 import {Country} from '../../network/data/CountryInterface'
 import {AppState} from '../../store/rootReducer'
@@ -29,14 +29,17 @@ interface PropsFromDispatch {
 
 type AllProps = Props & PropsFromState & PropsFromDispatch
 
+const initialState: State = {}
+const defaultProps: Props = {}
+
 interface State {
 }
 
 class CountryDetailsScreen extends React.Component<AllProps, State> {
-    readonly state: State = {}
-    public static defaultProps: Props = {}
+    readonly state: State = initialState
+    static defaultProps: Props = defaultProps
 
-    public static options(passProps: Props): Options {
+    static options(passProps: Props): Options {
         return {
             layout: {
                 backgroundColor: 'white',
@@ -51,7 +54,7 @@ class CountryDetailsScreen extends React.Component<AllProps, State> {
                 // @ts-ignore
                 title: {
                     text: passProps.country.name,
-                    ...getPlatformFont(FontName.QuicksandBold),
+                    ...getPlatformFont('quicksand_bold'),
                     color: 'white'
                 },
                 background: {
@@ -61,16 +64,16 @@ class CountryDetailsScreen extends React.Component<AllProps, State> {
         }
     }
 
-    public componentDidMount() {
+    componentDidMount() {
         const {country} = this.props
         this.props.getCountryDetails(country.alpha2Code)
     }
 
-    public componentWillUnmount() {
+    componentWillUnmount() {
         this.props.clearCountryDetails()
     }
 
-    public render(): JSX.Element {
+    render(): ReactElement<any> {
         const {
             countryDetails,
             loading

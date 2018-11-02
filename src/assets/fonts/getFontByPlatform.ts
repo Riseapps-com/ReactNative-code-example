@@ -1,14 +1,11 @@
 import {Platform, TextStyle} from 'react-native'
 
-export enum FontName {
-    QuicksandBold = 'quicksand_bold',
-    QuicksandRegular = 'quicksand_regular'
-}
+export type FontName = 'quicksand_bold' | 'quicksand_regular'
 
 const getPlatformFont = (fontName: FontName): TextStyle => {
     let fontStyle: TextStyle = {}
     switch (fontName) {
-        case FontName.QuicksandBold:
+        case 'quicksand_bold':
             if (Platform.OS === 'android') {
                 fontStyle = {
                     fontFamily: 'quicksand_bold'
@@ -19,7 +16,7 @@ const getPlatformFont = (fontName: FontName): TextStyle => {
                 }
             }
             break
-        case FontName.QuicksandRegular:
+        case 'quicksand_regular':
             if (Platform.OS === 'android') {
                 fontStyle = {
                     fontFamily: 'quicksand_regular'

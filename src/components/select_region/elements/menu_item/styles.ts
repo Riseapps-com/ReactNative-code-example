@@ -1,6 +1,6 @@
 import {ImageStyle, StyleSheet, TextStyle, ViewStyle} from 'react-native'
 import {PRIMARY_COLOR} from '../../../../appConstants'
-import getPlatformFont, {FontName} from '../../../../assets/fonts/getFontByPlatform'
+import getPlatformFont from '../../../../assets/fonts/getFontByPlatform'
 
 export interface Style {
     container: ViewStyle,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create<Style>({
         paddingEnd: 16
     },
     menuText: {
-        ...getPlatformFont(FontName.QuicksandBold),
+        ...getPlatformFont('quicksand_bold'),
         color: 'white',
         fontSize: 20
     },

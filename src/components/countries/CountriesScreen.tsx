@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {ReactElement} from 'react'
 import {connect} from 'react-redux'
 import {Country} from '../../network/data/CountryInterface'
-import {Region} from '../../network/data/RegionEnum'
+import {Region} from '../../network/data/RegionType'
 import {AppState} from '../../store/rootReducer'
 import {clearCountriesByRegion, getCountriesByRegion} from '../../store/countries_by_region/actions'
 import {Options} from 'react-native-navigation/lib/dist/interfaces/Options'
-import getPlatformFont, {FontName} from '../../assets/fonts/getFontByPlatform'
+import getPlatformFont from '../../assets/fonts/getFontByPlatform'
 import {PRIMARY_COLOR} from '../../appConstants'
 import {clearAllCountries, getAllCountries} from '../../store/all_countries/actions'
 import i18n from '../../assets/localization/i18n'
@@ -38,23 +38,23 @@ interface PropsFromDispatch {
     clearCountriesByRegion: typeof clearCountriesByRegion
 }
 
-export enum CountriesType {
-    AllCountries,
-    CountriesByRegion
-}
+export type CountriesType = 'all_countries' | 'countries_by_region'
 
 type AllProps = Props & PropsFromState & PropsFromDispatch
 
 interface State {
 }
 
-class CountriesScreen extends React.Component<AllProps, State> {
-    readonly state: State = {}
-    public static defaultProps: Props = {
-        countriesType: CountriesType.AllCountries
-    }
+const initialState: State = {}
+const defaultProps: Props = {
+    countriesType: 'all_countries'
+}
 
-    public static options(passProps: Props): Options {
+class CountriesScreen extends React.Component<AllProps, State> {
+    readonly state: State = initialState
+    static defaultProps: Props = defaultProps
+
+    static options(passProps: Props): Options {
         return {
             layout: {
                 backgroundColor: 'white',
@@ -69,7 +69,7 @@ class CountriesScreen extends React.Component<AllProps, State> {
                 // @ts-ignore
                 title: {
                     text: this.getTitle(passProps),
-                    ...getPlatformFont(FontName.QuicksandBold),
+                    ...getPlatformFont('quicksand_bold'),
                     color: 'white'
                 },
                 background: {
@@ -79,28 +79,28 @@ class CountriesScreen extends React.Component<AllProps, State> {
         }
     }
 
-    public componentDidMount() {
+    componentDidMount() {
         const {
             countriesType,
             region
         } = this.props
 
         switch (countriesType) {
-            case CountriesType.AllCountries:
+            case 'all_countries':
                 this.props.getAllCountries()
                 break
-            case CountriesType.CountriesByRegion:
+            case 'countries_by_region':
                 this.props.getCountriesByRegion(region)
                 break
         }
     }
 
-    public componentWillUnmount() {
+    componentWillUnmount() {
         this.props.clearAllCountries()
         this.props.clearCountriesByRegion()
     }
 
-    public render(): JSX.Element {
+    render(): ReactElement<any> {
         const {
             loading
         } = this.props
@@ -120,7 +120,7 @@ class CountriesScreen extends React.Component<AllProps, State> {
         )
     }
 
-    private getErrorView(): JSX.Element {
+    getErrorView(): ReactElement<any> {
         const {
             countriesType,
             allCountriesError,
@@ -129,10 +129,10 @@ class CountriesScreen extends React.Component<AllProps, State> {
         let error: string = ''
 
         switch (countriesType) {
-            case CountriesType.AllCountries:
+            case 'all_countries':
                 error = allCountriesError
                 break
-            case CountriesType.CountriesByRegion:
+            case 'countries_by_region':
                 error = countriesByRegionError
                 break
         }
@@ -146,7 +146,7 @@ class CountriesScreen extends React.Component<AllProps, State> {
         )
     }
 
-    private isError(): boolean {
+    isError(): boolean {
         const {
             countriesType,
             allCountriesError,
@@ -155,10 +155,10 @@ class CountriesScreen extends React.Component<AllProps, State> {
         let isError: boolean = false
 
         switch (countriesType) {
-            case CountriesType.AllCountries:
+            case 'all_countries':
                 isError = !!allCountriesError
                 break
-            case CountriesType.CountriesByRegion:
+            case 'countries_by_region':
                 isError = !!countriesByRegionError
                 break
         }
@@ -166,7 +166,7 @@ class CountriesScreen extends React.Component<AllProps, State> {
         return isError
     }
 
-    private static getTitle = (passProps: Props): string => {
+    static getTitle = (passProps: Props): string => {
         const {
             countriesType,
             region
@@ -174,24 +174,24 @@ class CountriesScreen extends React.Component<AllProps, State> {
         let title: string = i18n.t('All')
 
         switch (countriesType) {
-            case CountriesType.AllCountries:
+            case 'all_countries':
                 title = i18n.t('All')
                 break
-            case CountriesType.CountriesByRegion:
+            case 'countries_by_region':
                 switch (region) {
-                    case Region.Africa:
+                    case 'africa':
                         title = i18n.t('Africa')
                         break
-                    case Region.Americas:
+                    case 'americas':
                         title = i18n.t('Americas')
                         break
-                    case Region.Asia:
+                    case 'asia':
                         title = i18n.t('Asia')
                         break
-                    case Region.Europe:
+                    case 'europe':
                         title = i18n.t('Europe')
                         break
-                    case Region.Oceania:
+                    case 'oceania':
                         title = i18n.t('Oceania')
                         break
                 }
@@ -201,7 +201,7 @@ class CountriesScreen extends React.Component<AllProps, State> {
         return title
     }
 
-    private getCountries = (): Country[] => {
+    getCountries = (): Country[] => {
         const {
             countriesType,
             allCountries,
@@ -210,10 +210,10 @@ class CountriesScreen extends React.Component<AllProps, State> {
         let countries: Country[] = allCountries
 
         switch (countriesType) {
-            case CountriesType.AllCountries:
+            case 'all_countries':
                 countries = allCountries
                 break
-            case CountriesType.CountriesByRegion:
+            case 'countries_by_region':
                 countries = countriesByRegion
                 break
         }
@@ -221,7 +221,7 @@ class CountriesScreen extends React.Component<AllProps, State> {
         return countries
     }
 
-    private handleCountryPress = (country: Country): void => {
+    handleCountryPress = (country: Country): void => {
         Navigation.push(this.props.componentId, {
             component: {
                 name: COUNTRY_DETAILS_SCREEN,

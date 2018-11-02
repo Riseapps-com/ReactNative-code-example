@@ -1,7 +1,7 @@
-import React from 'react'
-import {TouchableOpacity, View, Image, Text, ImageStyle, RegisteredStyle} from 'react-native'
+import React, {ReactElement} from 'react'
+import {Image, ImageStyle, RegisteredStyle, Text, TouchableOpacity, View} from 'react-native'
 import styles from './styles'
-import getImgByName, {ImgName} from '../../../../assets/imgs/getImgByName'
+import getImgByName from '../../../../assets/imgs/getImgByName'
 import i18n from '../../../../assets/localization/i18n'
 
 export interface Props {
@@ -17,19 +17,19 @@ export interface OnItemPressCallback {
 export interface State {
 }
 
-export enum MenuItemOption {
-    AllCountries,
-    CountriesBeRegion
+export type MenuItemOption = 'all_countries' | 'countries_by_region'
+
+const initialState: State = {}
+const defaultProps: Props = {
+    menuItemOption: 'all_countries',
+    willShowBottomDivider: false
 }
 
 class MenuItem extends React.Component<Props, State> {
-    readonly state: State = {}
-    public static defaultProps: Props = {
-        menuItemOption: MenuItemOption.AllCountries,
-        willShowBottomDivider: false
-    }
+    readonly state: State = initialState
+    static defaultProps: Props = defaultProps
 
-    public render(): JSX.Element {
+    render(): ReactElement<any> {
         const {willShowBottomDivider} = this.props
 
         return (
@@ -51,19 +51,19 @@ class MenuItem extends React.Component<Props, State> {
         )
     }
 
-    private getMenuImg = (): JSX.Element => {
+    getMenuImg = (): ReactElement<any> => {
         const {menuItemOption} = this.props
-        const flagImg = getImgByName(ImgName.Flag)
-        const regionImg = getImgByName(ImgName.Region)
+        const flagImg = getImgByName('flag')
+        const regionImg = getImgByName('region')
         let source: number = flagImg
         let imgStyle: RegisteredStyle<ImageStyle> = styles.flagImg
 
         switch (menuItemOption) {
-            case MenuItemOption.AllCountries:
+            case 'all_countries':
                 source = flagImg
                 imgStyle = styles.flagImg
                 break
-            case MenuItemOption.CountriesBeRegion:
+            case 'countries_by_region':
                 source = regionImg
                 imgStyle = styles.regionImg
                 break
@@ -75,7 +75,7 @@ class MenuItem extends React.Component<Props, State> {
         )
     }
 
-    private handleMenuItemPress = (): void => {
+    handleMenuItemPress = (): void => {
         const {
             onMenuItemPress,
             menuItemOption
@@ -85,15 +85,15 @@ class MenuItem extends React.Component<Props, State> {
         }
     }
 
-    private getMenuItemText = (): string => {
+    getMenuItemText = (): string => {
         const {menuItemOption} = this.props
         let menuItemText: string = i18n.t('All Countries')
 
         switch (menuItemOption) {
-            case MenuItemOption.AllCountries:
+            case 'all_countries':
                 menuItemText = i18n.t('All Countries')
                 break
-            case MenuItemOption.CountriesBeRegion:
+            case 'countries_by_region':
                 menuItemText = i18n.t('Countries by Region')
                 break
         }
@@ -101,7 +101,7 @@ class MenuItem extends React.Component<Props, State> {
         return menuItemText
     }
 
-    private getBottomDivider = (): JSX.Element => <View style={styles.bottomDivider}/>
+    getBottomDivider = (): ReactElement<any> => <View style={styles.bottomDivider}/>
 }
 
 export default MenuItem

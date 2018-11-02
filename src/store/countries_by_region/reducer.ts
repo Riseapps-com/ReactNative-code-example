@@ -1,7 +1,7 @@
 import {Country} from '../../network/data/CountryInterface'
 import {Action} from '../ActionInterface'
 import {CLEAR, FAILED, SUCCESS} from '../../appConstants'
-import {Region} from '../../network/data/RegionEnum'
+import {Region} from '../../network/data/RegionType'
 import {GET_COUNTRIES_BY_REGION} from './actions'
 
 export interface CountriesByRegionState {
@@ -15,7 +15,7 @@ const initState: CountriesByRegionState = {
     data: [],
     loading: false,
     error: 'Data is empty',
-    region: Region.Africa
+    region: 'africa'
 }
 
 const countriesByRegion = (state: CountriesByRegionState = initState, action: Action): CountriesByRegionState => {

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {ReactElement} from 'react'
 import {Navigation} from 'react-native-navigation'
 import {MENU_SCREEN} from '../registerScreens'
 import {Image, SafeAreaView, Text, View} from 'react-native'
 import {Options} from 'react-native-navigation/lib/dist/interfaces/Options'
 import styles from './styles'
-import getImgByName, {ImgName} from '../../assets/imgs/getImgByName'
+import getImgByName from '../../assets/imgs/getImgByName'
 import DeviceInfo from 'react-native-device-info'
 import i18n from '../../assets/localization/i18n'
 import {PRIMARY_COLOR} from '../../appConstants'
@@ -18,12 +18,15 @@ export interface Props {
 interface State {
 }
 
-class SplashScreen extends React.Component<Props, State> {
-    readonly state: State = {}
-    public static defaultProps: Props = {}
-    private timerHandle: number
+const initialState: State = {}
+const defaultProps: Props = {}
 
-    public static options(): Options {
+class SplashScreen extends React.Component<Props, State> {
+    readonly state: State = initialState
+    static defaultProps: Props = defaultProps
+    timerHandle: number
+
+    static options(): Options {
         return {
             layout: {
                 backgroundColor: PRIMARY_COLOR,
@@ -32,15 +35,19 @@ class SplashScreen extends React.Component<Props, State> {
             topBar: {
                 visible: false,
                 drawBehind: true
-            }
+            },
+            statusBar: {
+                visible: false,
+                style: 'light'
+            },
         }
     }
 
-    public componentDidMount() {
+    componentDidMount() {
         this.setTimer()
     }
 
-    public componentWillUnmount() {
+    componentWillUnmount() {
         this.clearTimer()
     }
 
@@ -54,8 +61,8 @@ class SplashScreen extends React.Component<Props, State> {
         }
     }
 
-    public render(): JSX.Element {
-        const logoImg = getImgByName(ImgName.LogoWhite)
+    render(): ReactElement<any> {
+        const logoImg = getImgByName('logo_white')
         const version = `${i18n.t('Version')}: ${DeviceInfo.getVersion()} (${DeviceInfo.getBuildNumber()})`
 
         return (
@@ -72,7 +79,7 @@ class SplashScreen extends React.Component<Props, State> {
         )
     }
 
-    private startMenuScreen = (): void => {
+    startMenuScreen = (): void => {
         Navigation.setStackRoot(this.props.componentId, {
             component: {
                 name: MENU_SCREEN
