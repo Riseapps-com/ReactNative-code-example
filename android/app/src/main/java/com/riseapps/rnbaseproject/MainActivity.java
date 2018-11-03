@@ -1,4 +1,4 @@
-package com.baseproject;
+package com.riseapps.rnbaseproject;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

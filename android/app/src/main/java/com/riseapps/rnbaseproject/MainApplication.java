@@ -1,4 +1,4 @@
-package com.baseproject;
+package com.riseapps.rnbaseproject;
 
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
