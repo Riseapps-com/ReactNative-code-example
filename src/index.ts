@@ -9,7 +9,6 @@ const updateIds = <T extends any> (array: Array<T>): Array<T> => {
         item.id = id
     })
 
-
     return array
 }
 
