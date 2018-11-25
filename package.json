@@ -24,7 +24,6 @@
     "react-native-navigation": "^2.0.2584",
     "react-redux": "^5.0.7",
     "redux": "^4.0.1",
-    "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.2"
   },
   "devDependencies": {
@@ -40,7 +39,10 @@
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react": "^3.6.0",
     "tslint-react-recommended": "^1.0.15",
-    "typescript": "^3.1.3"
+    "typescript": "^3.1.3",
+    "reactotron-react-native": "^2.1.0",
+    "reactotron-redux": "^2.1.0",
+    "reactotron-redux-saga": "^2.1.0"
   },
   "jest": {
     "preset": "react-native"

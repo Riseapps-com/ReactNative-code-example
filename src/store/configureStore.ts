@@ -1,16 +1,19 @@
-import {applyMiddleware, createStore, Store} from 'redux'
+import {applyMiddleware, Store} from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import {rootSaga} from './rootSaga'
 import {AppState, rootReducer} from './rootReducer'
-// @ts-ignore
-import logger from 'redux-logger'
+import reactotron from '../ReactotronConfig'
+import Reactotron from 'reactotron-react-native'
 
 const configureStore = (): Store<AppState> => {
-    const sagaMiddleware = createSagaMiddleware()
+    // @ts-ignore
+    const sagaMonitor = Reactotron.createSagaMonitor()
+    const sagaMiddleware = createSagaMiddleware({sagaMonitor})
 
-    const store: Store<AppState> = createStore(
+    // @ts-ignore
+    const store: Store<AppState> = reactotron.createStore(
         rootReducer,
-        applyMiddleware(sagaMiddleware, logger)
+        applyMiddleware(sagaMiddleware)
     )
     sagaMiddleware.run(rootSaga)
 

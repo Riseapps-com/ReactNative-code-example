@@ -1,7 +1,7 @@
-import {CLEAR, PACKAGE} from '../../appConstants'
+import {ACTIONS_PACKAGE, CLEAR} from '../../appConstants'
 import {Action} from '../ActionInterface'
 
-export const GET_ALL_COUNTRIES = `${PACKAGE}.actions.GET_ALL_COUNTRIES`
+export const GET_ALL_COUNTRIES = `${ACTIONS_PACKAGE}.GET_ALL_COUNTRIES`
 
 export function getAllCountries(): Action {
     return {

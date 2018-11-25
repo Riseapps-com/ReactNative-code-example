@@ -1,8 +1,8 @@
-import {CLEAR, PACKAGE} from '../../appConstants'
+import {ACTIONS_PACKAGE, CLEAR} from '../../appConstants'
 import {Action} from '../ActionInterface'
 import {Region} from '../../network/data/RegionType'
 
-export const GET_COUNTRIES_BY_REGION = `${PACKAGE}.actions.GET_COUNTRIES_BY_REGION`
+export const GET_COUNTRIES_BY_REGION = `${ACTIONS_PACKAGE}.GET_COUNTRIES_BY_REGION`
 
 export function getCountriesByRegion(region: Region): Action {
     return {

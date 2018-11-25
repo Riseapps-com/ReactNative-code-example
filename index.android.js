@@ -1,7 +1,8 @@
 import {Navigation} from "react-native-navigation";
-import {registerScreens, SPLASH_SCREEN} from "./src/components/registerScreens";
+import {registerScreens, SPLASH_SCREEN} from "./src/screens/registerScreens";
 import RNLanguages from 'react-native-languages'
 import i18n from './src/assets/localization/i18n'
+import './src/ReactotronConfig'
 
 registerScreens();
 

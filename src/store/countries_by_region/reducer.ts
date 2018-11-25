@@ -20,12 +20,13 @@ const initState: CountriesByRegionState = {
 
 const countriesByRegion = (state: CountriesByRegionState = initState, action: Action): CountriesByRegionState => {
     let newState: CountriesByRegionState = null
+    const {payload} = action
     switch (action.type) {
         case GET_COUNTRIES_BY_REGION:
             newState = {
                 ...state,
                 loading: true,
-                region: action.payload.region
+                region: payload.region
             }
             break
         case `${GET_COUNTRIES_BY_REGION}${SUCCESS}`:

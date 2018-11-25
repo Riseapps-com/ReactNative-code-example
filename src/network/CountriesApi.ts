@@ -2,10 +2,8 @@ import axios from 'axios'
 import {Country} from './data/CountryInterface'
 import {Region} from './data/RegionType'
 import updateIds from '../index'
-import enableAxiosLogger from './logger/enableAxiosLogger'
 
 const BASE_URL = 'https://restcountries.eu/rest/v2'
-enableAxiosLogger()
 
 class CountriesApi {
     getAllCountries = (): Promise<Country[]> => {

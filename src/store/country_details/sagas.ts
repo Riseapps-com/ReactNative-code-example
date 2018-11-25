@@ -11,12 +11,14 @@ export function* getCountryDetails(action: Action) {
     try {
         const countryByName: Country[] = yield call(countriesApi.getCountryByCode, action.payload.code)
         const nextAction: Action = {
+            ...action,
             type: `${GET_COUNTRY_DETAILS}${SUCCESS}`,
             response: countryByName
         }
         yield put(nextAction)
     } catch (e) {
         const nextAction: Action = {
+            ...action,
             type: `${GET_COUNTRY_DETAILS}${FAILED}`,
             response: e.message
         }

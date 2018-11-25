@@ -11,12 +11,14 @@ export function* getCountriesByRegion(action: Action) {
     try {
         const countriesByRegion: Country[] = yield call(countriesApi.getCountriesByRegion, action.payload.region)
         const nextAction: Action = {
+            ...action,
             type: `${GET_COUNTRIES_BY_REGION}${SUCCESS}`,
             response: countriesByRegion
         }
         yield put(nextAction)
     } catch (e) {
         const nextAction: Action = {
+            ...action,
             type: `${GET_COUNTRIES_BY_REGION}${FAILED}`,
             response: e.message
         }

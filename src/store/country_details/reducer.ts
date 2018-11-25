@@ -19,12 +19,13 @@ const initState: CountryDetailsState = {
 
 const countryDetails = (state: CountryDetailsState = initState, action: Action): CountryDetailsState => {
     let newState: CountryDetailsState = null
+    const {payload} = action
     switch (action.type) {
         case GET_COUNTRY_DETAILS:
             newState = {
                 ...state,
                 loading: true,
-                code: action.payload.code
+                code: payload.code
             }
             break
         case `${GET_COUNTRY_DETAILS}${SUCCESS}`:
